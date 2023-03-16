@@ -1,0 +1,14 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**/*", "public/build/**/*"]
+    },
+    "watch": {
+      "cache": false,
+      "dependsOn": ["build"],
+      "persistent": true
+    }
+  }
+}

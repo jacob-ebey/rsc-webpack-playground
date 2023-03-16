@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "watch": "turbo watch"
+  },
+  "devDependencies": {
+    "prettier": "2.8.4",
+    "turbo": "1.8.3"
+  }
+}

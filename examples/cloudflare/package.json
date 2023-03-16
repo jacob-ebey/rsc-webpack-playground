@@ -1,0 +1,54 @@
+{
+  "name": "@examples/cloudflare",
+  "version": "0.0.0",
+  "type": "module",
+  "bundler": {
+    "rsc": {
+      "bundleNodeModules": true,
+      "conditions": [
+        "react-server",
+        "worker",
+        "webpack"
+      ],
+      "mainFields": [
+        "module",
+        "main"
+      ]
+    },
+    "ssr": {
+      "bundleNodeModules": true,
+      "conditions": [
+        "worker",
+        "webpack"
+      ],
+      "mainFields": [
+        "module",
+        "main"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "rsc-webpack-playground build --mode development && tsc",
+    "dev": "rsc-webpack-playground dev -- npm run dev:cloudflare",
+    "dev:cloudflare": "concurrently \"npm:dev:cloudflare:*\"",
+    "dev:cloudflare:rsc": "wrangler dev --local --port 3001 --name worker-rsc worker-rsc.ts",
+    "dev:cloudflare:ssr": "wrangler dev --local --port 3000 --config wrangler.ssr.toml --site public --name worker-ssr worker-ssr.ts",
+    "start": "npm run dev:cloudflare"
+  },
+  "dependencies": {
+    "@remix-run/router": "1.4.0",
+    "isbot": "3.6.7",
+    "react": "0.0.0-experimental-3706edb81-20230308",
+    "react-dom": "0.0.0-experimental-3706edb81-20230308",
+    "react-server-dom-webpack": "0.0.0-experimental-3706edb81-20230308"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20230307.0",
+    "@rsc-webpack-playground/cli": "0.0.0",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "concurrently": "7.6.0",
+    "typescript": "4.9.5",
+    "wrangler": "2.12.3"
+  }
+}

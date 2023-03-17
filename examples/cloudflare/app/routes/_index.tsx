@@ -24,7 +24,6 @@ export function loader() {
 }
 
 export async function Component({ data }: { data: ReturnType<typeof loader> }) {
-  await new Promise((resolve) => setTimeout(resolve, 500));
   return (
     <main>
       <h2>{data.title}</h2>

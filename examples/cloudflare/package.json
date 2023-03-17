@@ -38,9 +38,9 @@
   "dependencies": {
     "@remix-run/router": "1.4.0",
     "isbot": "3.6.7",
-    "react": "0.0.0-experimental-3706edb81-20230308",
-    "react-dom": "0.0.0-experimental-3706edb81-20230308",
-    "react-server-dom-webpack": "0.0.0-experimental-3706edb81-20230308"
+    "react": "0.0.0-experimental-47cf4e578-20230315",
+    "react-dom": "0.0.0-experimental-47cf4e578-20230315",
+    "react-server-dom-webpack": "0.0.0-experimental-47cf4e578-20230315"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20230307.0",

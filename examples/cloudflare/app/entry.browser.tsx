@@ -8,9 +8,14 @@ const rscChunk = ReactDOMRSC.createFromFetch(
   Promise.resolve(__remix.rscResponse)
 );
 
-// React.startTransition(() => {
-  ReactDOM.hydrateRoot(document, <RSC rscChunk={rscChunk} />);
-// });
+React.startTransition(() => {
+  ReactDOM.hydrateRoot(
+    document,
+    <React.StrictMode>
+      <RSC rscChunk={rscChunk} />
+    </React.StrictMode>
+  );
+});
 
 function RSC({ rscChunk }: { rscChunk: React.Usable<React.ReactElement> }) {
   return React.use(rscChunk);

@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { Counter } from "../components/counter2";
-
 export function action() {
   return new Response(null, {
     status: 302,
@@ -33,7 +31,6 @@ export async function Component({ data }: { data: ReturnType<typeof loader> }) {
         {/* @ts-expect-error */}
         <DelayedMessage message={data.superDelayed} />
       </React.Suspense>
-      <Counter label="B" />
 
       <form method="post">
         <button type="submit">Submit</button>

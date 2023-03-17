@@ -15,7 +15,29 @@ async function handleRequest(
 ): Promise<Response> {
   const staticHandler = createStaticHandler(routes);
 
-  const context = await staticHandler.query(request);
+  const url = new URL(request.url);
+  const actionId = url.searchParams.get("_rsc_action");
+  const queryRequest = actionId
+    ? new Request(url, {
+        method: "GET",
+        headers: request.headers,
+        signal: request.signal,
+      })
+    : request;
+
+  if (actionId) {
+    const [modId, fnName] = actionId.split("#", 2);
+    // @ts-expect-error
+    const mod = __webpack_require__(modId);
+    const fn = mod[fnName];
+    if (typeof fn !== "function") {
+      throw new Error(`Could not find function ${fnName} in module ${modId}`);
+    }
+
+    await fn(request);
+  }
+
+  const context = await staticHandler.query(queryRequest);
   if (context instanceof Response) {
     return context;
   }

@@ -1,4 +1,5 @@
 .turbo/
+.tmp/
 node_modules/
 packages/*/dist/
 examples/*/build/
